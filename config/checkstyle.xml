@@ -90,6 +90,7 @@
 
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <module name="AbstractClassName"/>
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName"/>
         <module name="LocalVariableName"/>
@@ -99,8 +100,7 @@
         <module name="ParameterName"/>
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
-
-
+        
         <!-- Checks for Headers                                -->
         <!-- See http://checkstyle.sf.net/config_header.html   -->
         <!-- <module name="Header">                            -->
@@ -134,12 +134,19 @@
 
         <!-- Checks for Size Violations.                    -->
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
+        <module name="AnonInnerLength">
+            <property name="max" value="60"/>
+        </module>
         <module name="LineLength">
             <property name="max" value="120"/>
         </module>
         <module name="MethodLength"/>
         <module name="ParameterNumberCheck">
-            <property name="max" value="20"/>
+            <property name="max" value="10"/>
+        </module>
+        <module name="OuterTypeNumber"/>
+        <module name="MethodCount">
+            <property name="maxTotal" value="80"/>
         </module>
 
         <!-- Checks for whitespace                               -->
@@ -185,7 +192,10 @@
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
         <module name="FinalLocalVariable"/>
-        <!-- <module name="HiddenField"/> -->
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+            <property name="ignoreSetter" value="true"/>
+        </module>        
         <!-- <module name="IllegalCatch" /> -->
         <module name="IllegalInstantiation"/>
         <module name="IllegalThrows"/>
@@ -211,13 +221,14 @@
 
         <!-- Checks for class design                         -->
         <!-- See http://checkstyle.sf.net/config_design.html -->
-        <!-- <module name="DesignForExtension"/> -->
+        <module name="DesignForExtension"/>
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
         <module name="VisibilityModifier">
             <property name="protectedAllowed" value="true"/>
         </module>
+        <module name="MutableException"/>
 
 
         <!-- Miscellaneous other checks.                   -->
@@ -230,7 +241,37 @@
             <property name="format" value="WARNING"/>
         </module>
         <module name="UpperEll"/>
+        <module name="NewlineAtEndOfFile">
+            <property name="lineSeparator" value="lf"/>
+        </module>
+        <module name="UncommentedMain"/>
+        <module name="Indentation"/>
+        <module name="OuterTypeFilename"/>
 
+        <!-- Metrics -->
+        <module name="BooleanExpressionComplexity"/>
+        <module name="ClassDataAbstractionCoupling">
+            <property name="max" value="5"/>
+        </module>
+        <module name="ClassFanOutComplexity">
+            <property name="max" value="10"/>
+        </module>
+        <module name="CyclomaticComplexity">
+            <property name="max" value="7"/>
+        </module>
+        <module name="NPathComplexity">
+            <property name="max" value="200"/>
+        </module>
+        <module name="JavaNCSS">
+            <property name="classMaximum" value="1500"/>
+            <property name="methodMaximum" value="40"/>
+            <property name="fileMaximum" value="2000"/>
+        </module>
+
+        <!-- Check for duplicate code -->
+        <module name="StrictDuplicateCode">
+            <property name="min" value="15"/>
+        </module>
     </module>
 
 </module>
