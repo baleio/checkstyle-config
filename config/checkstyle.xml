@@ -65,6 +65,16 @@
         <property name="eachLine" value="true"/>
     </module>
 
+    <!-- Check for newline in unix style -->
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf"/>
+    </module>
+
+    <!-- Check for duplicate code -->
+    <module name="StrictDuplicateCode">
+        <property name="min" value="15"/>
+    </module>
+
     <!-- Miscellaneous other checks.                   -->
     <!-- See http://checkstyle.sf.net/config_misc.html -->
     <!--<module name="RegexpSingleline">-->
@@ -241,9 +251,6 @@
             <property name="format" value="WARNING"/>
         </module>
         <module name="UpperEll"/>
-        <module name="NewlineAtEndOfFile">
-            <property name="lineSeparator" value="lf"/>
-        </module>
         <module name="UncommentedMain"/>
         <module name="Indentation"/>
         <module name="OuterTypeFilename"/>
@@ -268,10 +275,7 @@
             <property name="fileMaximum" value="2000"/>
         </module>
 
-        <!-- Check for duplicate code -->
-        <module name="StrictDuplicateCode">
-            <property name="min" value="15"/>
-        </module>
     </module>
 
 </module>
+
