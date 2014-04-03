@@ -2,13 +2,35 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
+// Apply the maven-publish plugin to add support for Maven
+apply plugin: 'maven-publish'
+
+
 version = "1.0.0-SNAPSHOT"
 group = "com.github.baleio.checkstyle"
+
+ext {
+    repoUrl = "$buildDir/repo"
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'maven central' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url "$repoUrl"        
+        }
+    }
 }
 
