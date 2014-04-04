@@ -9,9 +9,6 @@ apply plugin: 'maven-publish'
 version = "1.0.0-SNAPSHOT"
 group = "com.github.baleio.checkstyle"
 
-ext {
-    repoUrl = "$buildDir/repo"
-}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -29,7 +26,16 @@ publishing {
 
     repositories {
         maven {
-            url "$repoUrl"        
+            credentials {
+                username "$repoUsername"
+                password "$repoPassword"
+            }
+
+            if (project.version.endsWith("-SNAPSHOT")) {
+                url "$snapshotRepoUrl"
+            } else {
+                url "$repoUrl"
+            }
         }
     }
 }
