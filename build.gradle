@@ -3,6 +3,7 @@
 apply plugin: 'java'
 
 // Apply the maven-publish plugin to add support for Maven
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 
@@ -10,11 +11,26 @@ version = "1.0.0-SNAPSHOT"
 group = "com.github.baleio.checkstyle"
 
 
-// In this section you declare where to find the dependencies of your project
 repositories {
-    // Use 'maven central' for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     mavenCentral()
+}
+
+artifacts {
+    archives jar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "$repoUrl") {
+                authentication(userName: "$repoUsername", password: "$repoPassword")
+            }
+
+            snapshotRepository(url: "$snapshotRepoUrl") {
+                authentication(userName: "$repoUsername", password: "$repoPassword")
+            }
+        }
+    }
 }
 
 publishing {
